@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitepress'
 
+
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/ONIModTutorial/',
-  title: "ONIMOdTutorial",
+  title: "ONIModTutorial",
   description: "缺氧MOD教程",
   
 
@@ -44,15 +46,16 @@ export default defineConfig({
         items: [
           { text: '开发引言', link: '/intro' },
           { text: '开发环境配置', link: '/setup' },
-          { text: '游戏资源提取', link: '/dnspy-guide' }
+          { text: '游戏资产提取', link: '/asset-extraction' }, 
+          { text: '游戏源码分析工具', link: '/dnspy-guide' }
         ]
       },
       {
-        text: '02. 核心开发技术',
+        text: '02. 核心开发',
         collapsed: false,
         items: [
-          { text: 'Harmony 补丁框架', link: '/harmony-basics' },
           { text: 'C# 基础与补丁语法', link: '/csharp-basics' },
+          { text: 'Mod结构', link: '/mod-structure' },
           { text: '编译流程扩展', link: '/compile-and-debug' }
         ]
       },
@@ -80,6 +83,9 @@ export default defineConfig({
     editLink: {
       pattern: 'https://github.com/ChiYuKe/ONIModTutorial/edit/main/:path',
       text: '在 GitHub 上编辑此页'
+    },
+    search: {
+      provider: 'local'
     },
     lastUpdated: {
       text: '最后更新于',

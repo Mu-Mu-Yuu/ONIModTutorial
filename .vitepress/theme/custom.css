@@ -1,0 +1,59 @@
+/**
+ * VitePress 布局宽度自定义
+ */
+
+:root {
+  /* 1. 文档内容的最大宽度 (默认是 1152px) */
+  /* 设置为 1280px 或 1440px 可以让代码块更宽，减少横向滚动条 */
+  --vp-content-max-width: 1280px;
+
+  /* 2. 整个页面的最大宽度 (包括侧边栏和正文) */
+  --vp-layout-max-width: 1600px;
+
+  /* --vp-c-brand-1: #8f2a3b; 
+  --vp-c-brand-2: #8f2a3b; */
+}
+
+
+/* 强制覆盖首页标题的渐变效果 */
+.VPHero .name span.color-w {
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important; /* 白色 */
+  color: #ffffff !important;
+}
+
+.VPHero .name span.color-r {
+  background: none !important;
+  -webkit-text-fill-color: #ff4d4f !important; /* 红色 */
+  color: #ff4d4f !important;
+}
+
+/* 正文里的颜色 */
+span.color-white {
+  color: #ffffff !important;
+}
+span.color-white {
+  color: #ff4d4f !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* 如果你希望“代码块”在宽屏下表现更好，可以加上这个微调 */
+@media (min-width: 1280px) {
+  .VPDoc .container {
+    /* 这里的 margin 会自动平衡左右空间 */
+    margin: 0 auto;
+  }
+}
+
+/* 3. (可选) 首页 Hero 部分的宽度调整 */
+:root {
+  --vp-home-hero-max-width: 1152px;
+}
