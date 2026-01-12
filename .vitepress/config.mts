@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/ONIModTutorial/',
   title: "ONIMOdTutorial",
   description: "这是缺氧教程",
   themeConfig: {
