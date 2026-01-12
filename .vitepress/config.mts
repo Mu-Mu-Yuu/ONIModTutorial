@@ -38,45 +38,56 @@ export default defineConfig({
         ],
 
     sidebar: [
-    {
-      text: '01. 项目概述',
+      {
+        text: '01. 项目概述',
+        collapsed: false,
+        items: [
+          { text: '开发引言', link: '/intro' },
+          { text: '开发环境配置', link: '/setup' },
+          { text: '游戏资源提取', link: '/dnspy-guide' }
+        ]
+      },
+      {
+        text: '02. 核心开发技术',
+        collapsed: false,
+        items: [
+          { text: 'Harmony 补丁框架', link: '/harmony-basics' },
+          { text: 'C# 基础与补丁语法', link: '/csharp-basics' },
+          { text: '编译流程扩展', link: '/compile-and-debug' }
+        ]
+      },
+      {
+      text: '03. 游戏内容扩展',
       collapsed: false,
       items: [
-        { text: '开发引言', link: '/intro' },
-        { text: '开发环境配置', link: '/setup' },
-        { text: '游戏资源提取', link: '/dnspy-guide' }
+        { text: '新增建筑', link: '/content/buildings' },
+        { text: '新增植物', link: '/content/plants' },
+        { text: '新增物品：资源、消耗品与食物', link: '/content/items' },
+        { text: '新增生物', link: '/content/creatures' },
+        { text: '新增元素', link: '/content/elements' }
       ]
+      },
+      {
+        text: '04. 发布与维护',
+        collapsed: false,
+        items: [
+          { text: 'Steam Workshop 上传指南', link: '/steam-upload' },
+          { text: '多版本兼容性处理', link: '/compatibility' },
+          { text: '开源协议与社区规范', link: '/community' }
+        ]
+      }
+    ],
+    editLink: {
+      pattern: 'https://github.com/ChiYuKe/ONIModTutorial/edit/main/:path',
+      text: '在 GitHub 上编辑此页'
     },
-    {
-      text: '02. 核心开发技术',
-      collapsed: false,
-      items: [
-        { text: 'Harmony 补丁框架', link: '/harmony-basics' },
-        { text: 'C# 基础与补丁语法', link: '/csharp-basics' },
-        { text: '编译流程扩展', link: '/compile-and-debug' }
-      ]
-    },
-    {
-    text: '03. 游戏内容扩展',
-    collapsed: false,
-    items: [
-      { text: '新增建筑', link: '/content/buildings' },
-      { text: '新增植物', link: '/content/plants' },
-      { text: '新增物品：资源、消耗品与食物', link: '/content/items' },
-      { text: '新增生物', link: '/content/creatures' },
-      { text: '新增元素', link: '/content/elements' }
-    ]
-  },
-    {
-      text: '04. 发布与维护',
-      collapsed: false,
-      items: [
-        { text: 'Steam Workshop 上传指南', link: '/steam-upload' },
-        { text: '多版本兼容性处理', link: '/compatibility' },
-        { text: '开源协议与社区规范', link: '/community' }
-      ]
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
     }
-  ]
     
 
   }
