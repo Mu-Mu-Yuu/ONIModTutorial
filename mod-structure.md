@@ -4,16 +4,16 @@
 
 ## 1. 典型结构总览
 
-每个模组都使用一个单独文件夹，例如，你的`MyMod`路径应该如下所示： 
-`...\Klei\OxygenNotIncluded\mods\Dev\MyMod\`
-* `Mod.dll`
+每个模组都使用一个单独文件夹，例如，你的`MyFirstMod`路径应该如下所示： 
+`...\Klei\OxygenNotIncluded\mods\Dev\MyFirstMod\`
+* `MyFirstMod.dll`
 * `mod.yaml`
 * `mod_info.yaml`
 ```text
-MyMod/
+MyFirstMod/
 ├── mod_info.yaml           #  Mod 的元数据与版本兼容性配置
 ├── mod.yaml                #  用于配置 Mod 的名称、描述等静态信息
-├── MyMod.dll               #  编译后的程序集文件（逻辑代码）
+├── MyFirstMod.dll               #  编译后的程序集文件（逻辑代码）
 └── preview.png             #  Steam 创意工坊显示的预览图
 
 ```
@@ -29,7 +29,7 @@ version: "1.0.0"            # 你自己的 Mod 版本号
 
 ::: code-group
 ```yaml [mod.yaml 模板]
-title: "MyMod"  # 游戏内 Mod 列表显示的名称
+title: "MyFirstMod"  # 游戏内 Mod 列表显示的名称
 description: "这是一个示例描述"  # 游戏内显示的详细功能介绍
 staticID: "AuthorName.MyMod"  # Mod 的唯一标识符（建议格式：作者名.Mod名）
 ```
