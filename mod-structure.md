@@ -4,6 +4,11 @@
 
 ## 1. 典型结构总览
 
+每个模组都使用一个单独文件夹，例如，你的`MyMod`路径应该如下所示： 
+`...\Klei\OxygenNotIncluded\mods\Dev\MyMod\`
+* `Mod.dll`
+* `mod.yaml`
+* `mod_info.yaml`
 ```text
 MyMod/
 ├── mod_info.yaml           #  Mod 的元数据与版本兼容性配置
@@ -34,14 +39,11 @@ staticID: "AuthorName.MyMod"  # Mod 的唯一标识符（建议格式：作者�
 
 
 
-## 3. 资源与可选目录 (进阶)
+
+## 4. 资源与可选目录 (进阶)
 当你的 Mod 不再仅仅是简单的逻辑修改，而是涉及新建筑、新美术或多语言支持时，需要建立以下目录结构：
 * **/translations/：** 用于存放多语言翻译文件（.pot 或 .po）。
-* **/anim/assets/：** 存放自定义建筑、生物或掉落物的动画资源。通常包含三个核心文件：
-  `Myanim`
-  * `*_anim.bytes`
-  * `*_build.bytes`
-  * `*_0.png` 
+* **/anim/assets/：** 存放自定义建筑、生物或掉落物的动画资源。
 * **/assets/：** 额外素材
 * **/elements/：** 存放自定义元素的配置数据。
-* **`/worldgen/`** 涉及地形生成、生物群落（Biomes）修改时的核心目录。包含 `biomes`、`features` 等子文件夹。
+* **/worldgen/：** 涉及地形生成、生物群落（Biomes）修改时的核心目录。包含 `biomes`、`features` 等子文件夹。
