@@ -206,10 +206,3 @@ public class Electrolyzer_OutputPatch
 ```
 
 ---
-
-## ✅ 总结
-
-* `IBuildingConfig` 决定了 **建筑的一切**
-* `CreateBuildingDef` → 物理与能耗
-* `ConfigureBuildingTemplate` → 功能逻辑
-* Harmony Patch 是 ONI Mod 的 **核心技术**

@@ -5,7 +5,8 @@
 ---
 
 ## 1. 核心配置文件：mod_info.yaml
-
+> [!IMPORTANT]
+> **官方原文链接：** [Setting up mod_info.yaml and archived_versions](https://forums.kleientertainment.com/forums/topic/158363-setting-up-mod_infoyaml-and-archived_versions/)
 
 
 每个发布到 Steam Workshop 的 Mod 根目录必须包含 `mod_info.yaml`。它决定了 Mod 的“准入资格”。
