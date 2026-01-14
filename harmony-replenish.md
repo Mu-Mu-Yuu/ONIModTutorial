@@ -96,8 +96,9 @@ public class Patch : UserMod2
 [HarmonyPatch(typeof(Operational), nameof(Operational.SetActive))]
 public static class Operational_SetActive_Patch
 {
-    public static void Prefix(bool active)
+    public static void Prefix()
     {
+        // 在原方法执行前运行
     }
 }
 ```
@@ -110,44 +111,62 @@ public static class Operational_SetActive_Patch
 
 ### 4.2 阻止原方法执行（return false）
 
-```csharp
-public static bool Prefix(bool active)
-{
-    return false;
-}
-```
-
-📌 **适合**：  
-- 强制建筑常开  
-- 禁用原生逻辑  
-
----
-
-### 4.3 使用 `__instance` 操作对象本体
+1.这种写法会直接“斩断”游戏的执行路径。原方法体内的所有代码（包括状态改变、动画切换、音效触发）都不会被执行。
 
 ```csharp
-public static bool Prefix(Operational __instance, bool active)
+[HarmonyPatch(typeof(Operational), nameof(Operational.SetActive))]
+public static class Operational_SetActive_Patch
 {
-    __instance.SetActive(true);
-    return false;
+    public static bool Prefix(bool value, bool force_ignore)
+    {
+        // 彻底切断原方法。
+        // 效果：无论外界如何调用 SetActive，建筑的状态都会卡在当前这一刻。
+        return false; 
+    }
 }
-```
 
-📌 **这是 ONI Mod 里最常见的写法之一**
+
+
+```
+- 现象：建筑状态被“冻结”。即便你手动开关建筑，它也可能毫无反应。
+- 风险：由于跳过了原版所有逻辑，可能会导致建筑动画卡死，或者依赖该状态的其他 Mod 出现逻辑错误。
+
+
+2.下面这个就是：你没有阻止工人干活，但你修改了他的“工作指令”。
+
+```csharp
+[HarmonyPatch(typeof(Operational), nameof(Operational.SetActive))]
+public static class Operational_SetActive_Patch
+{
+    public static void Prefix(ref bool value)
+    {
+        // 强制篡改指令：无论原逻辑想关掉(false)还是开启(true)建筑
+        // 经过这一行后，传给原方法的永远是 true
+        value = true;
+    }
+}
+
+```
+- 现象：强制常开。即使你没有下达制作任务，或者建筑处于“禁用”状态，它依然会因为接收到了 value = true 的指令而开始消耗电力、播放运行动画。
 
 ---
 
 ## 🟩 五、Postfix（最安全、最推荐）
 
 ### 5.1 基础 Postfix
-
+这段代码的作用是： **当任何发电机（Generator）在地图上生成（或存档加载完成）时，立即强行将其设置为“激活（Active）”状态。**
 ```csharp
 [HarmonyPatch(typeof(Generator), "OnSpawn")]
 public static class Generator_OnSpawn_Patch
 {
     public static void Postfix(Generator __instance)
     {
-        __instance.operational.SetActive(true);
+        var op = __instance.GetComponent<Operational>();
+
+        if (op != null)
+        {
+            op.SetActive(true);
+        }
     }
 }
 ```
@@ -161,15 +180,28 @@ public static class Generator_OnSpawn_Patch
 ### 5.2 修改返回值（必须 `ref __result`）
 
 ```csharp
-[HarmonyPatch(typeof(Building), nameof(Building.IsOperational))]
-public static class Building_IsOperational_Patch
+[HarmonyPatch(typeof(Overheatable), nameof(Overheatable.OverheatTemperature), MethodType.Getter)]
+public static class Overheatable_OverheatTemperature_Patch
 {
-    public static void Postfix(ref bool __result)
+    public static void Postfix(ref float __result)
     {
-        __result = true;
+        __result = 9999f;
     }
 }
+
 ```
+- 实际效果：无论建筑是用什么材料做的，无论它原本的过热温度是多少，现在全图所有建筑都要到 9999 K（约 9725°C）才会过热报废。这在游戏中几乎等同于“永不过热”。
+
+| 枚举项 | 详细描述 | 开发者大白话 |
+| :--- | :--- | :--- |
+| **Normal** | 拦截**普通方法**。这是默认值。 | 只要目标带括号（如 `SetActive()`），就选它。 |
+| **Getter** | 拦截**属性的读取器**（get 块）。 | 当你想改“看到的数值”或“判定结果”时用它。 |
+| **Setter** | 拦截**属性的写入器**（set 块）。 | 当你想在“数值被修改”的那一刻搞破坏时用它。 |
+| **Constructor** | 拦截类的**构造函数**（对象创建时）。 | 对应 `public ClassName()`。用于对象刚出生时的初始化。 |
+| **StaticConstructor** | 拦截**静态构造函数**。 | 对应 `static ClassName()`。用于修改全局静态常量的初始值。 |
+| **Enumerator** | 拦截**迭代器方法**。 | 对应使用了 `yield return` 的方法。常用于修改异步或序列逻辑。 |
+
+
 
 ---
 
