@@ -47,13 +47,6 @@ span.color-white {
 
 
 
-
-
-
-
-
-
-
 /* 如果你希望“代码块”在宽屏下表现更好，可以加上这个微调 */
 @media (min-width: 1280px) {
   .VPDoc .container {

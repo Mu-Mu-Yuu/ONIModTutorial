@@ -39,6 +39,37 @@
 
 ## 3. 编写补丁代码
 
+<!-- <a href="./harmony-replenish#postfix" class="guide-link">
+  🚀 了解 Postfix 
+</a>
+
+<style scoped>
+.guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: var(--vp-c-brand-soft); /* 浅色背景 */
+  color: var(--vp-c-brand-1) !important;    /* 品牌主色文本 */
+  border: 1px solid var(--vp-c-brand);
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.guide-link:hover {
+  background-color: var(--vp-c-brand);      /* 悬浮变深色 */
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+</style> -->
+::: info 进阶指引
+想要进一步了解补丁？请点击阅读：
+[了解 Postfix →](./harmony-replenish.md#postfix)
+:::
 删除项目自动生成的 `Class1.cs` 里的所有内容，粘贴下面的代码：
 
 ```csharp
@@ -70,7 +101,7 @@ namespace MyFirstMod
 ## 🎁 下载项目模板 (可选)
 
 前面叽里咕噜没看懂？
-没关系，我这里提供了一份Mod模板，如果你是按教程来的，那么在这里我将默认你安装了Visual StudioS 2026版本。
+没关系，我这里提供了一份Mod模板，如果你是按教程来的，那么在这里我将默认你安装了Visual Studio 2026版本。
 
 ### 安装方法：
 

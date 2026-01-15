@@ -1,8 +1,12 @@
 ---
 sidebar: false
 ---
+<a href="javascript:history.back()" class="back-button">
+  ⬅ 返回
+</a>
 
-<a href="./csharp-basics#back-point1" style="
+<style scoped>
+.back-button {
   position: fixed;
   left: 20px;
   top: 100px;
@@ -10,17 +14,23 @@ sidebar: false
   align-items: center;
   gap: 8px;
   padding: 10px 15px;
-  background-color: var(--vp-c-brand);
-  color: white;
+  background-color: var(--vp-c-brand); 
+  color: white !important;
   border-radius: 20px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.2s;
   z-index: 100;
-">
-⬅ 返回
-</a>
+  cursor: pointer;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+</style>
+
 
 # 🧩 Harmony 补丁整理
 
@@ -135,8 +145,8 @@ public static bool Prefix(bool value, bool force_ignore)
 ```
 
 ---
+<h2 id="postfix">🟩 五、Postfix（执行后补充）</h2>
 
-## 🟩 五、Postfix（执行后补充）
 `Prefix` 在原方法执行完毕后运行。它是最推荐的补丁方式，因为它不会中断游戏的正常逻辑，兼容性最好。
 
 ### 5.1 实战代码：追加额外逻辑
@@ -348,11 +358,6 @@ public static class SomeMethod_Finalizer
 - Prefix `return false` 但没处理返回值
 - Transpiler 修改逻辑过多
 
----
-
-## ✅ 总结一句话
-
-> **ONI Mod 的核心不是写逻辑，而是“选对 Patch 类型”**
 
 ---
 

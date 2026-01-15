@@ -1,7 +1,12 @@
 ---
 sidebar: false
 ---
-<a href="./csharp-basics#back-point" style="
+<a href="javascript:history.back()" class="back-button">
+  ⬅ 返回
+</a>
+
+<style scoped>
+.back-button {
   position: fixed;
   left: 20px;
   top: 100px;
@@ -9,17 +14,22 @@ sidebar: false
   align-items: center;
   gap: 8px;
   padding: 10px 15px;
-  background-color: var(--vp-c-brand);
-  color: white;
+  background-color: var(--vp-c-brand); 
+  color: white !important;
   border-radius: 20px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.2s;
   z-index: 100;
-" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-  <span style="font-size: 1.2em;">返回</span> 
-</a>
+  cursor: pointer;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+</style>
 
 
 # ⚡ C# 核心语法
