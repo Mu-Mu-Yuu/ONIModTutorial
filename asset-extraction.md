@@ -2,11 +2,11 @@
 
 在进行《缺氧》（Oxygen Not Included）的 Mod 开发时，获取原版资产（贴图、动画、文本）是进行二次创作和保持视觉一致性的基础。本章将详细介绍开发者常用的资产解包与处理工具。
 
-## 1. 资源解包核心：AssetRipper
+## 一 . 资源解包
 
-### 1. AssetRipper
+### 1.1 AssetRipper
 
-是目前处理 Unity 引擎资源最强大的开源工具之一。它不仅能提取静态贴图，还能在一定程度上还原 Unity 项目的资源目录结构。
+目前处理 Unity 引擎资源最强大的开源工具之一。它不仅能提取静态贴图，还能在一定程度上还原 Unity 项目的资源目录结构。
 
 * **[📥 官方仓库 (GitHub Releases)](https://github.com/AssetRipper/AssetRipper/releases)**
 * **适用范围**：UI 图标（Sprite）、建筑贴图（Texture2D）、音频文件（AudioClip）... 。
@@ -16,7 +16,7 @@
 * **载入资源：** 运行 `AssetRipper` ，选择游戏的 `OxygenNotIncluded_Data` 文件夹。
 * **资源导出：** 在视图中，通过 `Export`导出全部资源。
 
-### 2. AssetStudio
+### 1.2 AssetStudio
 如果你不需要还原整个项目，只想快速找到某几张特定的贴图、立绘或听一段音频，AssetStudio 是更高效的选择。它支持实时预览，让你在导出前就能看到资源内容。
 
 * **[📥 官方仓库 (GitHub Releases)](https://github.com/aelurum/AssetStudio/releases)** 
@@ -40,19 +40,13 @@
 
 ---
 
-## 2. 动画系统处理：KAnim 协议
+## 二 . 动画处理
 
 《缺氧》的动态表现基于 Klei 自定义的 **KAnim** 系统，而非 Unity 原生动画。每个动画对象由三个核心文件组成：`图集(*_0.png)`、`结构(*_build.bytes)` 和 `序列(*_anim.bytes)`。
 
 ### 🛠️ 推荐转换工具
 
-::: tip 🚀 推荐：KAnim_GUI (可视化操作)
-对于大多数开发者，**KAnim_GUI** 提供了极简的图形化界面，支持一键解压和重组 KAnim，极大地降低了命令行操作的门槛。需要将 kanimal-SE(kanimal-cli.exe) 放入KAnim_GUI(KAnimGui.exe)同目录下才能正常工作
-* **[📥 官方仓库 (KAnim_GUI)](https://github.com/ChiYuKe/KAnim_GUI)**
-
-:::
-
-#### 进阶工具：kanimal-SE (底层转换)
+#### kanimal-SE (KAnim转换)
 **kanimal-SE** 是处理 KAnim 的标准工具，支持将字节流转换为可编辑的 SCML 格式。
 * **[📥 官方仓库 (kanimal-SE)](https://github.com/skairunner/kanimal-SE)**
 
@@ -63,11 +57,19 @@
 
 # 打包：将修改后的 SCML 重新编译为游戏可读的 KAnim
 .\kanimal-cli.exe kanim [file_name].scml
+```
+:::
+
+
+::: tip 🚀 推荐：KAnim_GUI (可视化操作)
+**KAnim_GUI** 对 `kanimal-SE` 供了极简的图形化界面，支持快速解压和重组 KAnim，极大地降低了命令行操作的门槛。需要将 `kanimal-SE(kanimal-cli.exe)` 放入 `KAnim_GUI(KAnimGui.exe)` 同目录下才能正常工作
+* **[📥 官方仓库 (KAnim_GUI)](https://github.com/ChiYuKe/KAnim_GUI)**
 
 :::
+
 ---
 
-## 3. 国际化与文本处理 (Localization)
+## 三 . 多语言与文本处理
 
 无论是寻找建筑的 `PrefabID`，还是为 Mod 增加多语言支持，都需要处理 `.po` 格式的翻译文件。
 
