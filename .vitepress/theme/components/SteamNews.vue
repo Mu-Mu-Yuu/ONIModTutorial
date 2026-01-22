@@ -152,7 +152,6 @@ onMounted(async () => {
       </a>
     </div>
 
-    // Tooltip 部分
     <Teleport to="body">
       <div
         v-if="tooltip.visible"
